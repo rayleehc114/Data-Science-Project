@@ -1,0 +1,22 @@
+name: D200_project
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - numpy<2.0
+  - pandas
+  - pyarrow
+  - scikit-learn
+  - lightgbm
+  - xgboost
+  - statsmodels
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - ipykernel
+  - shap
+  - dalex
+  - tqdm
+  

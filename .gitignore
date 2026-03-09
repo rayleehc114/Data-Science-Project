@@ -1,0 +1,15 @@
+# Python junk
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+
+# Ignore egg info
+*.egg-info/
+
+
+#DS_Store files
+.DS_Store
+
+#ignore csv files
+*.csv

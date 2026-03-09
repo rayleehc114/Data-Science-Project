@@ -25,7 +25,7 @@ To run this project, please follow these stops in the terminal:
 1. Data preparation: Run the data cleaning and exploratory noteboook (`EDA.ipynb`) to generate the cleaned parquet file.
 2. Model Training: Run the model training script (`model/model.py`) with code in termianl:
     ```
-    python -m model.model_training
+    python -m model.model
     ```
 
 

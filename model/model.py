@@ -125,12 +125,12 @@ grid_search = GridSearchCV(
     verbose=1,
 )
 
-#fit the grid search on the training data
+#fit the grid search on the tuning data
 grid_search.fit(X_tune_t, y_tune)
 print("Best parameters found:", grid_search.best_params_)
 print("Best score found:", grid_search.best_score_)
 
-# Full training with early stopping
+# Full training with early stopping on the validation set
 xgb = grid_search.best_estimator_
 xgb.set_params(n_estimators=5000, early_stopping_rounds=50, n_jobs=-1)
 

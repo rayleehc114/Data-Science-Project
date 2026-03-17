@@ -96,8 +96,10 @@ print_lasso_summary(lasso, X_trainval_t, y_trainval, feature_names)
 ########################################################
 ## XGBoost — tuned on subsample of train, early stopping on val
 print("=" * 40)
+
 # Subsample for faster tuning to reduce the training time
-idx = np.random.choice(X_train_t.shape[0], size=500000, replace=False)
+rng = np.random.default_rng(42)
+idx = rng.choice(X_train_t.shape[0], size=500000, replace=False)
 X_tune_t = X_train_t[idx]
 y_tune = y_train.iloc[idx]
 

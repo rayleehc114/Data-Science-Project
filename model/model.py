@@ -57,7 +57,7 @@ preprocessor = ColumnTransformer(
     remainder="drop",
 )
 
-#fit the preprocessor on the training data
+#fit the preprocessor on the data
 X_train_t = preprocessor.fit_transform(X_train)
 X_val_t = preprocessor.transform(X_val)
 X_trainval_t = preprocessor.transform(X_trainval)

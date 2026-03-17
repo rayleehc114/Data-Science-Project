@@ -20,7 +20,7 @@ X_trainval, X_test, y_trainval, y_test = train_test_split(
     df.drop("price", axis=1), df["price"], test_size=0.2, random_state=42
 )
 
-#Validation set is 10% of the remaining data excluding the test set for early stopping, training set and validation set is for XGBoost model.
+#Validation set is 5% of the remaining data excluding the test set for early stopping, training set and validation set is for XGBoost model.
 X_train, X_val, y_train, y_val = train_test_split(
     X_trainval, y_trainval, test_size=0.05, random_state=42
 )

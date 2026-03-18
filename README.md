@@ -10,13 +10,17 @@ To run this project, please follow these stops in the terminal:
     git clone <repository_url>
     ```
 
-2. Create and activate the conda environment:
+2. Acquire the data by downloading the csv file from the data acquisistion link: 
+    https://www.kaggle.com/datasets/yasirumanujith/usa-real-estate-dataset
+
+
+3. Create and activate the conda environment:
     ```
     conda env create -f environment.yml
     conda activate D200_project
     ```
 
-3. Install the package in development mode:
+4. Install the package in development mode:
     ```
     pip install -e .
     ```

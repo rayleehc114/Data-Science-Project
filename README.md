@@ -12,7 +12,7 @@ To run this project, please follow these stops in the terminal:
 
 2. Acquire the data by downloading the csv file from the data acquisistion link: 
     https://www.kaggle.com/datasets/yasirumanujith/usa-real-estate-dataset
-
+    then move the data into the "data" directory
 
 3. Create and activate the conda environment:
     ```

@@ -1,4 +1,4 @@
-##Data Acquisition
+## Data Acquisition
 To acquire the data, please use the link: https://www.kaggle.com/datasets/yasirumanujith/usa-real-estate-dataset
 open the link and download the "csv" file to the "data" directory
 
@@ -6,7 +6,7 @@ Alternatively, you may download the data via google drive link: https://drive.go
 
 
 
-##Installation
+## Installation
 To run this project, please follow these stops in the terminal:
 
 1. Clone the repository
@@ -42,7 +42,7 @@ To run this project, please follow these stops in the terminal:
     ```
 
 
-##For Your Information
+## For Your Information
 The XGBoost model takes arounds 3 mins to train the data in Mac, which is the most among all three models.
 
 

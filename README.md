@@ -47,4 +47,4 @@ The XGBoost model takes arounds 3 mins to train the data in Mac, which is the mo
 
 
 ## AI declaration
-AI tools are mainly used in this project in plotting data distribution and model evaluation.
+AI tools used in this project are mainly for plotting data distribution and model evaluation.

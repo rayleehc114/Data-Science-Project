@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy.sparse as sp
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 
@@ -161,38 +162,43 @@ def plot_dalex_comparison(models_dict, preprocessor, X_test, y_test, numerical_f
         X_sample_t = X_sample_t.toarray()
     X_df = pd.DataFrame(X_sample_t, columns=feature_names)
 
-    with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", message="X has feature names")
+    def custom_predict(model, data):
+        X_dense = data.values
+        if type(model).__name__ == "XGBRegressor":
+            X_sparse = sp.csr_matrix(X_dense)
+            return model.predict(X_sparse)
+        
+        return model.predict(X_dense)
 
-        explainers = {}
-        for label, model in models_dict.items():
-            explainers[label] = dx.Explainer(model, X_df, y_sample,
-                                             label=label, verbose=False)
+    explainers = {}
+    for label, model in models_dict.items():
+        explainers[label] = dx.Explainer(model, X_df, y_sample,
+            label=label, verbose=False, predict_function=custom_predict)
 
-        variable_groups = {}
-        for fname in feature_names:
-            if fname.startswith("num__"):
-                group = fname[len("num__"):]
-            elif fname.startswith("cat__city_"):
-                group = "city"
-            elif fname.startswith("cat__state_"):
-                group = "state"
-            elif fname.startswith("cat__area_type_"):
-                group = fname[len("cat__"):]
-            else:
-                group = fname
-            variable_groups.setdefault(group, []).append(fname)
+    variable_groups = {}
+    for fname in feature_names:
+        if fname.startswith("num__"):
+            group = fname[len("num__"):]
+        elif fname.startswith("cat__city_"):
+            group = "city"
+        elif fname.startswith("cat__state_"):
+            group = "state"
+        elif fname.startswith("cat__area_type_"):
+            group = fname[len("cat__"):]
+        else:
+            group = fname
+        variable_groups.setdefault(group, []).append(fname)
 
-        print("  Computing permutation importance...")
-        vis = [exp.model_parts(variable_groups=variable_groups, random_state=42)
-               for exp in explainers.values()]
-        vis[0].plot(vis[1:], title="Variable Importance (permutation-based)")
+    print("  Computing permutation importance...")
+    vis = [exp.model_parts(variable_groups=variable_groups, random_state=42)
+            for exp in explainers.values()]
+    vis[0].plot(vis[1:], title="Variable Importance (permutation-based)")
 
-        num_cols_t = [f"num__{c}" for c in numerical_features]
-        print("  Computing PDP...")
-        pdps = [exp.model_profile(variables=num_cols_t)
-                for exp in explainers.values()]
-        pdps[0].plot(pdps[1:], title="Partial Dependence Plots (numeric features)")
+    num_cols_t = [f"num__{c}" for c in numerical_features]
+    print("  Computing PDP...")
+    pdps = [exp.model_profile(variables=num_cols_t)
+            for exp in explainers.values()]
+    pdps[0].plot(pdps[1:], title="Partial Dependence Plots (numeric features)")
 
 
 def plot_binned_errors(y_test, pred_dict):

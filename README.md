@@ -41,10 +41,3 @@ To run this project, please follow these stops in the terminal:
     python -m model.model
     ```
 
-
-## For Your Information
-The XGBoost model takes arounds 3 mins to train the data in Mac, which is the most among all three models.
-
-
-## AI declaration
-AI tools used in this project are mainly for plotting data distribution and model evaluation.
